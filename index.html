@@ -2,16 +2,18 @@
 <html>
   <body>
     <h1>Today's Pattern</h1>
-    <h1 id='pattern'></h1>
+    <h1 id='pattern8'></h1>
+    <h1 id='pattern12'></h1>
+    <h1 id='pattern16'></h1>
   </body>
 </html>
 
 <script type='application/javascript'>
-  function genPattern() {
+  function genPattern(patternLen) {
     var pattern = '';
     var i = Math.floor(Math.random() * 2);
     var j;
-    while (pattern.length < 8) {
+    while (pattern.length < patternLen) {
       if (i % 2 == 0) {
         var letter = 'R';
       } else {
@@ -22,7 +24,7 @@
       }
       i++;
     }
-    return pattern.slice(0, 8);
+    return pattern.slice(0, patternLen);
   }
 
   function checkPattern(pattern) {
@@ -43,14 +45,34 @@
     return true;
   }
 
-  var todaysPattern;
+  var pattern8;
+  var pattern12;
+  var pattern16;
   var goodToGo = false;
   while (!goodToGo) {
-    todaysPattern = genPattern();
-    if (checkPattern(todaysPattern)) {
+    pattern8 = genPattern(8);
+    if (checkPattern(pattern8)) {
       goodToGo = true;
     }
   }
 
-  document.getElementById('pattern').innerHTML = todaysPattern;
+  goodToGo = false;
+  while (!goodToGo) {
+    pattern12 = genPattern(12);
+    if (checkPattern(pattern12)) {
+      goodToGo = true;
+    }
+  }
+
+  goodToGo = false;
+  while (!goodToGo) {
+    pattern16 = genPattern(16);
+    if (checkPattern(pattern16)) {
+      goodToGo = true;
+    }
+  }
+
+  document.getElementById('pattern8').innerHTML = pattern8;
+  document.getElementById('pattern12').innerHTML = pattern12;
+  document.getElementById('pattern16').innerHTML = pattern16;
 </script>
