@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Today's Pattern</h1>
+    <h1 id='pattern'></h1>
+  </body>
+</html>
+
+<script type='application/javascript'>
+  function genPattern() {
+    var pattern = '';
+    var i = Math.floor(Math.random() * 2);
+    var j;
+    while (pattern.length < 8) {
+      if (i % 2 == 0) {
+        var letter = 'R';
+      } else {
+        var letter = 'L';
+      }
+      for (j = 0; j < Math.floor(Math.random() * 2) + 1; j++) {
+        pattern += letter;
+      }
+      i++;
+    }
+    return pattern.slice(0, 8);
+  }
+
+  function checkPattern(pattern) {
+    var newPattern = pattern + pattern;
+    console.log(newPattern);
+    var inARow = 1;
+    var i;
+    for (i = 1; i < newPattern.length; i++) {
+      if (newPattern.charAt(i) == newPattern.charAt(i - 1)) {
+        inARow++;
+      } else {
+        inARow = 1;
+      }
+      if (inARow > 2) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  var todaysPattern;
+  var goodToGo = false;
+  while (!goodToGo) {
+    todaysPattern = genPattern();
+    if (checkPattern(todaysPattern)) {
+      goodToGo = true;
+    }
+  }
+
+  document.getElementById('pattern').innerHTML = todaysPattern;
+</script>
